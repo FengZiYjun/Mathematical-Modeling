@@ -1,27 +1,26 @@
-function X = population(_beta, first_year_population, death_rate, women_p)
-  #---------Interface Instruction---------
-  #     
+function X = population(_t, _beta, first_year_pop, death_rate, women_p)
+  #-----------------------------------------------------
+  #   t: the number of years to consider
   #   _beta: t*1 vector,  average number of children per woman give birth to
-  #   first_year_population: 1*m vector
+  #   first_year_pop: 1*m vector , population in the first year
   #   death_rate:¡¡(m+1)*1 vector
   #   women_p: m*1 vector, woman proportion at each age
+  #-----------------------------------------------------
   
     # m: the largest age of human
     m = 100;
     # t: the number of years to consider
-    t = 50;
+    t = _t;
     # the suitable fertility age of all women is a-b
     a = 20;
     b = 40;
-
-
+    
     # population at the age of i in year t
     # i: 0-m
     x = ones(t,m);
 
-    # --------- begin to initialize ---------
     # population in the first year
-    x(1,:) = first_year_population;
+    x(1,:) = first_year_pop;
 
     # death rate at the age of i (in all years)
     # i: 0-m   
@@ -34,13 +33,10 @@ function X = population(_beta, first_year_population, death_rate, women_p)
     # beta = sum(fertility(:,[a,b]),2);
     beta = beta + _beta;
 
-    # population proportion of women at the age of i (in all years) is 0.487
+    # population proportion of women at the age of i (in all years)
     # i=1:m
     k = zeros(m);
     k = women_p;
-
-
-    # -----------  end ----------------------
 
     # h: fertility mode at the age of i
     h = zeros(m);
@@ -50,12 +46,12 @@ function X = population(_beta, first_year_population, death_rate, women_p)
 
     # fertility rate of women at the age of i in year t
     # i: 1-m
-    fertility = zeros(t,m);
-    for i=1:t
-      for j=1:m
-        fertility(i,j) = beta(i)*h(j);
-       end
-    end
+    #fertility = zeros(t,m);
+    #for i=1:t
+    #  for j=1:m
+    #    fertility(i,j) = beta(i)*h(j);
+    #   end
+    #end
 
     # born population in year t
     #born = zeros(t);
