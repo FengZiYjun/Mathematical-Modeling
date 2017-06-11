@@ -1,9 +1,15 @@
-function X = population(_beta)
-
+function X = population(_beta, first_year_population, death_rate, women_p)
+  #---------Interface Instruction---------
+  #     
+  #   _beta: t*1 vector,  average number of children per woman give birth to
+  #   first_year_population: 1*m vector
+  #   death_rate:¡¡(m+1)*1 vector
+  #   women_p: m*1 vector, woman proportion at each age
+  
     # m: the largest age of human
     m = 100;
     # t: the number of years to consider
-    t = 10;
+    t = 50;
     # the suitable fertility age of all women is a-b
     a = 20;
     b = 40;
@@ -15,15 +21,13 @@ function X = population(_beta)
 
     # --------- begin to initialize ---------
     # population in the first year
-    C = csvread("2010age.csv");
-    C = C(2:end,:);
-    x(1,:) = C';
+    x(1,:) = first_year_population;
 
     # death rate at the age of i (in all years)
     # i: 0-m   
     # death(0) is the death rate of new-born infants
-    death = zeros(m+1);
-    death = csvread("death_rate.csv");
+    death = zeros(m+1,1);
+    death = death_rate;
 
     # average number of children per woman give birth to in year t
     beta = zeros(t);
@@ -33,7 +37,7 @@ function X = population(_beta)
     # population proportion of women at the age of i (in all years) is 0.487
     # i=1:m
     k = zeros(m);
-    k = k + 0.487;
+    k = women_p;
 
 
     # -----------  end ----------------------
@@ -73,8 +77,8 @@ function X = population(_beta)
     end
 
     # recursion formula
-    for i=1:m
-      x(i+1,:) = ( A*(x(i,:)') + beta(i).*B*(x(i,:)') )';
+    for i=1:t
+      x(i+1,:) = ( A * (x(i,:)') + beta(i) .* B * (x(i,:)') )';
      # 1*m  = m*m  m*1      +  1*1 m*m  m*1
     end
 
