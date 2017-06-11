@@ -3,7 +3,7 @@ function X = population(_t, _beta, first_year_pop, death_rate, women_p)
   #   t: the number of years to consider
   #   _beta: t*1 vector,  average number of children per woman give birth to
   #   first_year_pop: 1*m vector , population in the first year
-  #   death_rate:¡¡(m+1)*1 vector
+  #   death_rate: (m+1)*1 vector
   #   women_p: m*1 vector, woman proportion at each age
   #-----------------------------------------------------
   

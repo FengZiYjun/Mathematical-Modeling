@@ -19,12 +19,14 @@ women_p = [women_p;0;0];
 beta = ones(years,1);
 beta = beta + [zeros(6,1);ones(years-6,1)];
 
-X = population(years, 1, p, death, women_p);
-X1 = population(years, beta, p, death, women_p);
+X = compute_population(years, 1, p, death, women_p);
+X1 = compute_population(years, beta, p, death, women_p);
 years = size(X,1);
 T = 2010:1:(years+2010-1);
 
+
 plot(T,X,'+1;beta=1;', "markersize", 8,T,X1,'o3;beta=2;', "markersize", 8);
+set(gca, "fontsize", 18);
 xlabel("year");
-ylabel("population");
-title("the influence of child policy on Chinese population(2010-)");
+ylabel("population/person");
+title("The influence of child policy on Chinese population");
