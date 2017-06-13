@@ -2,6 +2,7 @@
 This is a discrete math model to predict population trend based on different fertility mode
 
 Codes are run in GNU Octave, with grammar a little different from that of Matlab. 
+
 Input:
 1. population data of all ages in the first year
 2. death rates of all ages (which are considered unchanngeable towards time)
