@@ -1,7 +1,7 @@
-function X = population(_t, _beta, first_year_pop, death_rate, women_p)
+function X = population(input_t, input_beta, first_year_pop, death_rate, women_p)
   #-----------------------------------------------------
   #   t: the number of years to consider
-  #   _beta: t*1 vector,  average number of children per woman give birth to
+  #   input_beta: t*1 vector,  average number of children per woman give birth to
   #   first_year_pop: 1*m vector , population in the first year
   #   death_rate: (m+1)*1 vector
   #   women_p: m*1 vector, woman proportion at each age
@@ -10,7 +10,7 @@ function X = population(_t, _beta, first_year_pop, death_rate, women_p)
     # m: the largest age of human
     m = 100;
     # t: the number of years to consider
-    t = _t;
+    t = input_t;
     # the suitable fertility age of all women is a-b
     a = 20;
     b = 40;
@@ -31,7 +31,7 @@ function X = population(_t, _beta, first_year_pop, death_rate, women_p)
     # average number of children per woman give birth to in year t
     beta = zeros(t);
     # beta = sum(fertility(:,[a,b]),2);
-    beta = beta + _beta;
+    beta = beta + input_beta;
 
     # population proportion of women at the age of i (in all years)
     # i=1:m
